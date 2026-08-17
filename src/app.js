@@ -37,7 +37,7 @@ import {
   toggleTocChapter,
   toggleTocSection,
 } from "./toc-disclosure.js";
-import { markOnboardingSeen, onboardingSteps, shouldShowOnboarding } from "./onboarding.js";
+import { markOnboardingSeen, onboardingSteps } from "./onboarding.js";
 
 const DESKTOP_MEDIA = "(min-width: 1200px)";
 const MOBILE_MEDIA = "(max-width: 767px)";
@@ -1603,7 +1603,8 @@ function setupOnboarding() {
     if (!elements.onboardingTour.hidden) renderOnboarding();
   });
   document.addEventListener("scroll", positionOnboarding, true);
-  if (shouldShowOnboarding(window.localStorage)) window.setTimeout(openOnboarding, 320);
+  // Keep the first screen clean for real users and automated previews. The full
+  // tour remains available from the explicit "도움말 다시 보기" controls.
 }
 
 function searchModalFocusables(searchInput, searchResults) {
