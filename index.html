@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="개인정보보호법을 빠르게 찾고 편하게 읽는 개인용 법령 리더" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="보호법 편히보기" />
+    <meta property="og:title" content="보호법 편히보기" />
+    <meta property="og:description" content="개인정보보호법을 빠르게 찾고 편하게 읽는 개인용 법령 리더" />
+    <meta property="og:url" content="https://privacy-law-reader.vercel.app/" />
+    <meta property="og:image" content="https://privacy-law-reader.vercel.app/assets/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="보호법 편히보기" />
+    <meta name="twitter:description" content="개인정보보호법을 빠르게 찾고 편하게 읽는 개인용 법령 리더" />
+    <meta name="twitter:image" content="https://privacy-law-reader.vercel.app/assets/social-card.png" />
+    <link rel="icon" type="image/png" href="./assets/bookmark-icon.png" />
+    <link rel="apple-touch-icon" href="./assets/bookmark-icon.png" />
+    <title>보-편 | 보호법 편히보기</title>
+    <script src="./src/theme-bootstrap.js"></script>
+    <link rel="stylesheet" href="./src/styles.css?v=20260724-desktop-header-flow" />
+  </head>
+  <body>
+    <a class="skip-link" href="#articleBody">본문으로 건너뛰기</a>
+    <div id="readerRoot" class="reader-root">
+      <header class="app-header">
+        <a class="brand" href="./" aria-label="보호법 편히보기 홈">
+          <span class="brand-art" aria-hidden="true">
+            <img class="brand-lockup brand-lockup--light" src="./assets/brand-lockup-light-cropped.png" alt="" />
+            <img class="brand-lockup brand-lockup--dark" src="./assets/brand-lockup-dark-cropped.png" alt="" />
+          </span>
+        </a>
+        <div class="header-primary">
+          <div class="document-switcher" role="group" aria-label="기준 문서">
+            <button type="button" data-document-choice="privacy-law" aria-pressed="true">법률</button>
+            <button type="button" data-document-choice="privacy-decree" aria-pressed="false">시행령</button>
+            <button type="button" data-document-choice="privacy-notice" aria-pressed="false">고시</button>
+          </div>
+          <div class="mobile-font-controls" aria-label="글자 크기">
+            <button type="button" data-font-size-step="-1" aria-label="글자 크기 줄이기">−</button>
+            <button type="button" data-font-size-step="1" aria-label="글자 크기 키우기">+</button>
+            <button id="mobileOnboardingReplayButton" type="button" aria-label="도움말 다시 보기">?</button>
+          </div>
+          <div class="header-search">
+            <label class="sr-only" for="searchInput">법령 통합 검색</label>
+            <input id="searchInput" type="search" placeholder="통합검색 · 법률·시행령·고시 전체 검색" autocomplete="off" />
+            <button id="searchButton" type="button" aria-label="검색 실행">⌕</button>
+            <button id="clearSearchButton" type="button" aria-label="검색어 지우기">×</button>
+          </div>
+          <div id="currentRelationPath" class="current-path"></div>
+        </div>
+        <div class="header-actions">
+          <div class="header-controls-row">
+            <div class="theme-segments" role="group" aria-label="테마">
+              <button type="button" data-theme-choice="light" aria-pressed="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+                <span>Light</span>
+              </button>
+              <button type="button" data-theme-choice="dark" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"></path></svg>
+                <span>Dark</span>
+              </button>
+            </div>
+            <button id="fullscreenButton" type="button" aria-pressed="false">전체 화면</button>
+            <div class="reading-controls" aria-label="읽기 설정">
+              <label>글자 <input id="fontSizeControl" type="range" min="15" max="20" step="1" value="17" aria-describedby="fontSizeOutput" /><output id="fontSizeOutput">17px</output></label>
+              <label>행간 <input id="lineHeightControl" type="range" min="130" max="180" step="10" value="160" aria-describedby="lineHeightOutput" /><output id="lineHeightOutput">1.6</output></label>
+            </div>
+            <button id="toolsMenuButton" type="button" aria-expanded="false">도구</button>
+          </div>
+          <div id="toolsMenu" role="menu" hidden>
+            <button id="printButton" class="tool-print-button" type="button" aria-label="현재 화면 인쇄">
+              <span class="tool-print-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 8V3h10v5" /><path d="M6 17H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" /><path d="M7 14h10v7H7z" /><path d="M17 12h.01" /></svg>
+              </span>
+              <span class="tool-print-text">인쇄</span>
+            </button>
+            <label class="tool-checkbox">
+              <input id="futureAmendmentsToggle" type="checkbox" />
+              <span>시행예정 조문 보이기</span>
+            </label>
+            <button id="onboardingReplayButton" type="button">도움말 다시 보기</button>
+            <div id="officialSourceDetail"></div>
+          </div>
+        </div>
+      </header>
+      <main id="comparisonPane" class="reader-layout comparison-pane">
+        <article id="articleBody" class="reader-article" tabindex="-1"></article>
+        <aside id="navigationPane" aria-label="검색 결과와 목차">
+          <div id="globalSearchResults" aria-live="polite" hidden></div>
+          <nav id="articleList" aria-label="법령 목차"></nav>
+        </aside>
+        <div class="column-resizer" data-column-resizer="law-decree" role="separator" aria-orientation="vertical" aria-label="법률과 시행령 너비 조정"></div>
+        <aside id="sidePanel" aria-label="시행령 연결 근거"></aside>
+        <div class="column-resizer" data-column-resizer="decree-notice" role="separator" aria-orientation="vertical" aria-label="시행령과 고시 너비 조정"></div>
+        <aside id="noticePanel" aria-label="고시 연결 근거"></aside>
+      </main>
+      <nav id="mobileNavigation" aria-label="모바일 탐색">
+        <a href="#navigationPane">목차열기</a><a href="#sidePanel">연결규정</a><a href="#globalSearchResults">검색</a>
+      </nav>
+      <a class="mobile-home-button" href="./" aria-label="보호법 편히보기 홈">Home</a>
+      <p id="readerStatus" class="sr-only" aria-live="polite"></p>
+      <section id="onboardingTour" class="onboarding-tour" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle" aria-describedby="onboardingDescription" hidden>
+        <div id="onboardingSpotlight" class="onboarding-spotlight" aria-hidden="true"></div>
+        <div id="onboardingTip" class="onboarding-tip">
+          <p id="onboardingProgress" class="onboarding-progress" aria-live="polite"></p>
+          <h2 id="onboardingTitle"></h2>
+          <p id="onboardingDescription"></p>
+          <div class="onboarding-actions">
+            <button id="onboardingSkipButton" type="button">건너뛰기</button>
+            <span class="onboarding-step-actions"><button id="onboardingBackButton" type="button">이전</button><button id="onboardingNextButton" type="button">다음</button></span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="./src/app.js?v=20260723-penalty-paragraph"></script>
+  </body>
+</html>

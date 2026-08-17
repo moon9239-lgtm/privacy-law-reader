@@ -1,0 +1,15 @@
+.vercel/
+dist/
+node_modules/
+public/
+.env*
+*.local
+.tmp/
+.worktrees/
+worktrees/
+
+# Local design-research sessions
+.lazyweb/
+.superpowers/
+maru-v2-run/
+maru-v2-validation-base.json
