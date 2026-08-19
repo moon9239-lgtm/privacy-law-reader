@@ -70,6 +70,9 @@
             </div>
             <button id="toolsMenuButton" type="button" aria-expanded="false">도구</button>
           </div>
+          <div class="header-meta-row">
+            <p id="publicVisitorSummary" class="public-visitor-summary" aria-live="polite" hidden></p>
+          </div>
           <div id="toolsMenu" role="menu" hidden>
             <button id="printButton" class="tool-print-button" type="button" aria-label="현재 화면 인쇄">
               <span class="tool-print-icon" aria-hidden="true">
@@ -116,5 +119,7 @@
       </section>
     </div>
     <script type="module" src="./src/app.js?v=20260723-penalty-paragraph"></script>
+    <script type="module" src="./src/analytics-loader.js"></script>
   </body>
 </html>
+
