@@ -4,7 +4,6 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
 const bannedPaths = [
-  "api",
   "assets/legal-pdfs",
   "tmp",
   ".codex",
@@ -28,7 +27,7 @@ const publicDocuments = [
   ".github/workflows/ci.yml",
 ];
 
-test("private and operational paths are absent", () => {
+test("private paths are absent", () => {
   for (const path of bannedPaths) {
     assert.equal(existsSync(path), false, `${path} must not exist`);
   }
@@ -157,3 +156,14 @@ test("public HTML does not expose personal contact links", async () => {
   assert.doesNotMatch(html, /moon9239@gmail\.com/i);
   assert.doesNotMatch(html, /mailto:/i);
 });
+
+test("reader keeps the public visitor summary connected", async () => {
+  const html = await readFile("index.html", "utf8");
+
+  assert.match(html, /id="publicVisitorSummary"/);
+  assert.match(html, /src="\.\/src\/analytics-loader\.js/);
+  assert.equal(existsSync("src/analytics-loader.js"), true);
+  assert.equal(existsSync("src/public-visitor-counter.js"), true);
+  assert.equal(existsSync("api/public-analytics.js"), true);
+});
+
