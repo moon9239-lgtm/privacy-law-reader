@@ -139,6 +139,15 @@ test("vercel and ci stay static, public, and non-mutating", async () => {
   assert.doesNotMatch(ci, /deploy/i);
 });
 
+test("visitor summary keeps the previous desktop text treatment", async () => {
+  const styles = await readFile("src/styles.css", "utf8");
+
+  assert.match(styles, /\.public-visitor-summary \{ margin: 0; display: inline-flex; align-items: center;/);
+  assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자수 \|"; color: var\(--accent-strong\); \}/);
+  assert.match(styles, /\.visitor-icon \{ display: none; \}/);
+  assert.match(styles, /\.visitor-total::after \{ content: " ·"; color: var\(--muted\); \}/);
+});
+
 test("attachment source manifest keeps only public official-link fields", async () => {
   const manifest = JSON.parse(await readFile("assets/legal-sources/attachments.json", "utf8"));
   const allowedKeys = ["article_id", "attachment_index", "document_id", "label", "source_url"];
