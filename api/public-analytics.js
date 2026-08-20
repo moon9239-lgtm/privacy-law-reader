@@ -17,6 +17,12 @@ function toKstDate(value = new Date()) {
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
+function nextKstDate(date) {
+  const next = new Date(`${date}T00:00:00.000Z`);
+  next.setUTCDate(next.getUTCDate() + 1);
+  return next.toISOString().slice(0, 10);
+}
+
 function rowsFromResponse(value) {
   if (Array.isArray(value)) return value;
   if (!value || typeof value !== "object") return [];
@@ -44,7 +50,7 @@ async function fetchTodayVisitors({ fetchImpl, env, today }) {
     teamId: env.VERCEL_TEAM_ID || DEFAULT_TEAM_ID,
     projectId: env.VERCEL_PROJECT_ID || DEFAULT_PROJECT_ID,
     since: today,
-    until: today,
+    until: nextKstDate(today),
     by: "day",
   });
   const response = await fetchImpl(url, {
