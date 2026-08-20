@@ -98,6 +98,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .header-actions { grid-column: 3; grid-row: 1; justify-self: end; }
 .header-controls-row { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; justify-content: flex-end; min-width: 0; }
 .header-meta-row { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; }
+/* DESIGN CONTRACT: desktop visitor summary stays as lightweight header text. Do not turn it into a pill/card. */
 .public-visitor-summary { margin: 0; display: inline-flex; align-items: center; overflow: hidden; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
 .public-visitor-summary::before { content: "방문자수 |"; color: var(--accent-strong); }
 .visitor-total, .visitor-today { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-height: 18px; padding: 0; font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; background: transparent; }
