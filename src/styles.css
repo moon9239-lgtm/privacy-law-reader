@@ -100,7 +100,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .header-meta-row { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; }
 /* DESIGN CONTRACT: desktop visitor summary stays as lightweight header text. Do not turn it into a pill/card. */
 .public-visitor-summary { margin: 0; display: inline-flex; align-items: center; overflow: hidden; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
-.public-visitor-summary::before { content: "방문자수 |"; color: var(--accent-strong); }
+.public-visitor-summary::before { content: "방문자수 | "; color: var(--accent-strong); }
 .visitor-total, .visitor-today { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-height: 18px; padding: 0; font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; background: transparent; }
 .visitor-total { color: var(--muted); }
 .visitor-today { color: var(--danger); }
@@ -584,10 +584,11 @@ mark { padding: 0 2px; background: #ffe799; color: #18202a; border-radius: 3px; 
   .header-controls-row { grid-column: 2; grid-row: 2; flex-wrap: nowrap; justify-content: flex-end; transform: translateY(-13px); }
   .header-meta-row { position: absolute; top: 4px; right: 10px; left: 10px; justify-content: flex-end; gap: 10px; }
   .public-visitor-summary { width: auto; min-width: 0; max-width: 52%; margin-right: 0; overflow: hidden; border: 0; border-radius: 0; background: transparent; box-shadow: none; font-size: 10px; text-overflow: ellipsis; }
-  .public-visitor-summary::before { content: "방문자수 |"; color: var(--muted); }
+  .public-visitor-summary { gap: 5px; }
+  .public-visitor-summary::before { content: "방문자 수 | "; color: var(--muted); }
   .theme-segments { width: 148px; }
-  .visitor-total, .visitor-today { flex: 0 0 auto; justify-content: center; min-height: 18px; gap: 2px; padding: 0; font-size: 8px; background: transparent; }
-  .visitor-total::after { content: " ·"; color: var(--muted); }
+  .visitor-total, .visitor-today { flex: 0 0 auto; justify-content: center; min-height: 18px; gap: 3px; padding: 0; font-size: 8px; background: transparent; }
+  .visitor-total::after { content: ""; }
   .visitor-label { font-size: 8px; letter-spacing: .01em; }
   .visitor-icon { display: none; }
   .header-contact { display: none; }
