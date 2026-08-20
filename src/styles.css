@@ -575,14 +575,14 @@ mark { padding: 0 2px; background: #ffe799; color: #18202a; border-radius: 3px; 
 
 @media (max-width: 767px) {
   .reader-root { padding-bottom: calc(58px + env(safe-area-inset-bottom)); background: var(--bg); }
-  .app-header { position: fixed; z-index: 45; top: 0; right: 0; left: 0; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; min-height: 0; padding: 4px 10px; }
+  .app-header { position: fixed; z-index: 45; top: 0; right: 0; left: 0; grid-template-columns: minmax(0, 1fr) auto; gap: 0 8px; min-height: 0; padding: 4px 10px; }
   .onboarding-tip { width: auto; max-width: none; padding: 18px; }
   .brand { grid-column: 1; grid-row: 1 / 3; min-width: 0; }
   .brand-art { width: 190px; min-width: 0; height: 80px; }
   .reading-controls { display: none; }
   .header-actions { display: contents; }
-  .header-controls-row { grid-column: 2; grid-row: 2; flex-wrap: nowrap; justify-content: flex-end; transform: translateY(-13px); }
-  .header-meta-row { position: absolute; top: 4px; right: 10px; left: auto; width: 148px; justify-content: center; gap: 0; }
+  .header-controls-row { grid-column: 2; grid-row: 2; flex-wrap: nowrap; justify-content: flex-end; transform: none; }
+  .header-meta-row { position: static; grid-column: 2; grid-row: 1; align-self: end; justify-self: end; width: 148px; justify-content: center; gap: 0; }
   .public-visitor-summary { width: max-content; min-width: max-content; max-width: none; flex: 0 0 auto; margin-right: 0; overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; font-size: 7px; text-overflow: clip; }
   .public-visitor-summary { gap: 1px; }
   .public-visitor-summary::before { content: "방문자 수 | "; color: var(--muted); }
