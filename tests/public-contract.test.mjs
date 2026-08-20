@@ -153,8 +153,9 @@ test("visitor summary keeps the previous desktop text treatment", async () => {
   assert.match(styles, /\.visitor-total::after \{ content: " ·"; color: var\(--muted\); \}/);
   assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*border: 1px solid var\(--line\);[^}]*border-radius: 999px/);
   assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*box-shadow: var\(--shadow-soft\)/);
-  assert.match(styles, /\.public-visitor-summary \{ width: max-content; min-width: 0; max-width: 70%; margin-right: 0; overflow: visible;/);
-  assert.match(styles, /\.public-visitor-summary \{ gap: 3px; \}/);
+  assert.match(styles, /\.header-meta-row \{ position: absolute; top: 4px; right: 10px; left: 10px; justify-content: center; gap: 0; \}/);
+  assert.match(styles, /\.public-visitor-summary \{ width: max-content; min-width: max-content; max-width: none; flex: 0 0 auto; margin-right: 0; overflow: visible;/);
+  assert.match(styles, /\.public-visitor-summary \{ gap: 2px; \}/);
   assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자 수 \| "; color: var\(--muted\); \}/);
   assert.match(styles, /\.visitor-total::after \{ content: ""; \}/);
   assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*border-radius: 999px;[^}]*background: var\(--surface\)/);
@@ -187,8 +188,8 @@ test("reader keeps the public visitor summary connected", async () => {
   assert.equal(existsSync("src/analytics-loader.js"), true);
   assert.equal(existsSync("src/public-visitor-counter.js"), true);
   assert.equal(existsSync("api/public-analytics.js"), true);
-  assert.match(styles, /\.header-meta-row \{ position: absolute; top: 4px; right: 10px; left: 10px; justify-content: flex-end;/);
-  assert.match(styles, /\.public-visitor-summary \{[^}]*max-width: 70%;/);
+  assert.match(styles, /\.header-meta-row \{ position: absolute; top: 4px; right: 10px; left: 10px; justify-content: center;/);
+  assert.match(styles, /\.public-visitor-summary \{[^}]*max-width: none;/);
   assert.match(styles, /\.public-visitor-summary \{[^}]*margin-right: 0;/);
   assert.match(styles, /\.visitor-icon \{ display: none; \}/);
 });
