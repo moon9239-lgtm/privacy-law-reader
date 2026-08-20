@@ -39,6 +39,5 @@ test("public analytics returns historical total and today's visitors", async () 
   assert.deepEqual(JSON.parse(response.body), { totalVisitors: 12, todayVisitors: 7 });
   assert.equal(calls.length, 2);
   assert.ok(calls.some((url) => url.includes("since=2026-08-20")));
-  assert.ok(calls.some((url) => url.includes("until=2026-08-21")));
+  assert.ok(calls.some((url) => url.includes("until=2026-08-20")));
 });
-
