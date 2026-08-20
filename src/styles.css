@@ -98,12 +98,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .header-actions { grid-column: 3; grid-row: 1; justify-self: end; }
 .header-controls-row { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; justify-content: flex-end; min-width: 0; }
 .header-meta-row { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; }
-.public-visitor-summary { margin-right: auto; display: inline-flex; align-items: stretch; overflow: hidden; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); box-shadow: var(--shadow-soft); }
-.visitor-total, .visitor-today { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 28px; padding: 0 12px; font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; }
-.visitor-total { color: var(--muted); background: var(--surface); }
-.visitor-today { color: #ef3340; background: #fff0f1; }
-.visitor-icon { width: 16px; height: 16px; flex: 0 0 auto; }
-.visitor-label { font-size: 10px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; opacity: .78; }
+.public-visitor-summary { margin: 0; display: inline-flex; align-items: center; overflow: hidden; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+.public-visitor-summary::before { content: "방문자수 |"; color: var(--accent-strong); }
+.visitor-total, .visitor-today { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-height: 18px; padding: 0; font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; background: transparent; }
+.visitor-total { color: var(--muted); }
+.visitor-today { color: var(--danger); }
+.visitor-total::after { content: " ·"; color: var(--muted); }
+.visitor-icon { display: none; }
+.visitor-label { font-size: 11px; font-weight: 700; letter-spacing: .01em; text-transform: none; opacity: 1; }
 .visitor-value { font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
 .header-contact { margin: 0; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.2; white-space: nowrap; transform: translateY(2px); }
 .header-contact { margin-left: auto; text-align: right; }
@@ -581,7 +583,6 @@ mark { padding: 0 2px; background: #ffe799; color: #18202a; border-radius: 3px; 
   .header-controls-row { grid-column: 2; grid-row: 2; flex-wrap: nowrap; justify-content: flex-end; transform: translateY(-13px); }
   .header-meta-row { position: absolute; top: 4px; right: 10px; left: 10px; justify-content: flex-end; gap: 10px; }
   .public-visitor-summary { width: auto; min-width: 0; max-width: 52%; margin-right: 0; overflow: hidden; border: 0; border-radius: 0; background: transparent; box-shadow: none; font-size: 10px; text-overflow: ellipsis; }
-  .public-visitor-summary::before { content: "방문자수 |"; color: var(--muted); }
   .public-visitor-summary::before { content: "방문자수 |"; color: var(--muted); }
   .theme-segments { width: 148px; }
   .visitor-total, .visitor-today { flex: 0 0 auto; justify-content: center; min-height: 18px; gap: 2px; padding: 0; font-size: 8px; background: transparent; }
