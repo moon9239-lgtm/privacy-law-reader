@@ -17,12 +17,6 @@ function toKstDate(value = new Date()) {
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
-function nextKstDate(date) {
-  const next = new Date(`${date}T00:00:00.000Z`);
-  next.setUTCDate(next.getUTCDate() + 1);
-  return next.toISOString().slice(0, 10);
-}
-
 function rowsFromResponse(value) {
   if (Array.isArray(value)) return value;
   if (!value || typeof value !== "object") return [];
@@ -50,7 +44,7 @@ async function fetchTodayVisitors({ fetchImpl, env, today }) {
     teamId: env.VERCEL_TEAM_ID || DEFAULT_TEAM_ID,
     projectId: env.VERCEL_PROJECT_ID || DEFAULT_PROJECT_ID,
     since: today,
-    until: nextKstDate(today),
+    until: today,
     by: "day",
   });
   const response = await fetchImpl(url, {
@@ -60,7 +54,8 @@ async function fetchTodayVisitors({ fetchImpl, env, today }) {
     },
   });
   if (!response.ok) throw new Error(`Vercel Analytics request failed (${response.status})`);
-  const row = rowsFromResponse(await response.json()).find((item) => String(item?.date ?? item?.day ?? "").startsWith(today));
+  const payload = await response.json();
+  const row = rowsFromResponse(payload).find((item) => String(item?.date ?? item?.day ?? "").startsWith(today));
   return nonNegativeInteger(row?.visitors ?? row?.visitor ?? row?.users);
 }
 
@@ -108,4 +103,3 @@ export function createPublicAnalyticsHandler({ env = process.env, fetchImpl = gl
 }
 
 export default createPublicAnalyticsHandler();
-
