@@ -166,8 +166,9 @@ test("reader keeps the public visitor summary connected", async () => {
   assert.equal(existsSync("src/analytics-loader.js"), true);
   assert.equal(existsSync("src/public-visitor-counter.js"), true);
   assert.equal(existsSync("api/public-analytics.js"), true);
-  assert.match(styles, /\.header-meta-row \{ position: absolute; top: 54px; right: 10px; left: 10px;/);
+  assert.match(styles, /\.header-meta-row \{ position: absolute; top: 4px; right: 10px; left: 10px; justify-content: flex-end;/);
   assert.match(styles, /\.public-visitor-summary \{[^}]*max-width: 52%;/);
+  assert.match(styles, /\.public-visitor-summary \{[^}]*margin-right: 0;/);
   assert.match(styles, /\.visitor-icon \{ display: none; \}/);
 });
 
