@@ -19,6 +19,7 @@ const publicDocuments = [
   "docs/architecture.md",
   "docs/getting-started.md",
   "docs/adapting-your-service.md",
+  "docs/design-rules.md",
   "NOTICE.md",
   "LICENSE",
   "CONTRIBUTING.md",
@@ -141,11 +142,17 @@ test("vercel and ci stay static, public, and non-mutating", async () => {
 
 test("visitor summary keeps the previous desktop text treatment", async () => {
   const styles = await readFile("src/styles.css", "utf8");
+  const designRules = await readFile("docs/design-rules.md", "utf8");
 
+  assert.match(designRules, /데스크톱 헤더의 방문자 수 표시/);
+  assert.match(designRules, /카드, pill, 테두리, 그림자, 배경색 칩으로 바꾸지 않는다/);
+  assert.match(styles, /DESIGN CONTRACT: desktop visitor summary stays as lightweight header text/);
   assert.match(styles, /\.public-visitor-summary \{ margin: 0; display: inline-flex; align-items: center;/);
   assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자수 \|"; color: var\(--accent-strong\); \}/);
   assert.match(styles, /\.visitor-icon \{ display: none; \}/);
   assert.match(styles, /\.visitor-total::after \{ content: " ·"; color: var\(--muted\); \}/);
+  assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*border: 1px solid var\(--line\);[^}]*border-radius: 999px/);
+  assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*box-shadow: var\(--shadow-soft\)/);
 });
 
 test("attachment source manifest keeps only public official-link fields", async () => {
