@@ -148,11 +148,15 @@ test("visitor summary keeps the previous desktop text treatment", async () => {
   assert.match(designRules, /카드, pill, 테두리, 그림자, 배경색 칩으로 바꾸지 않는다/);
   assert.match(styles, /DESIGN CONTRACT: desktop visitor summary stays as lightweight header text/);
   assert.match(styles, /\.public-visitor-summary \{ margin: 0; display: inline-flex; align-items: center;/);
-  assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자수 \|"; color: var\(--accent-strong\); \}/);
+  assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자수 \| "; color: var\(--accent-strong\); \}/);
   assert.match(styles, /\.visitor-icon \{ display: none; \}/);
   assert.match(styles, /\.visitor-total::after \{ content: " ·"; color: var\(--muted\); \}/);
   assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*border: 1px solid var\(--line\);[^}]*border-radius: 999px/);
   assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*box-shadow: var\(--shadow-soft\)/);
+  assert.match(styles, /\.public-visitor-summary \{ gap: 5px; \}/);
+  assert.match(styles, /\.public-visitor-summary::before \{ content: "방문자 수 \| "; color: var\(--muted\); \}/);
+  assert.match(styles, /\.visitor-total::after \{ content: ""; \}/);
+  assert.doesNotMatch(styles, /\.public-visitor-summary \{[^}]*border-radius: 999px;[^}]*background: var\(--surface\)/);
 });
 
 test("attachment source manifest keeps only public official-link fields", async () => {
